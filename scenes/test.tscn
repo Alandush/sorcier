@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://dyhuockms3q4o"]
+
+[ext_resource type="Script" uid="uid://cfuhyr65lbe3x" path="res://scripts/movement.gd" id="1_errlg"]
+[ext_resource type="Script" uid="uid://weriqpe0mpuq" path="res://scripts/element_magic.gd" id="1_iyx0m"]
+[ext_resource type="Script" uid="uid://c1p543i15da" path="res://scripts/camera_follow_player.gd" id="2_bl13t"]
+[ext_resource type="Script" uid="uid://c3h02qgxsyg0l" path="res://scripts/camera_spring_arm.gd" id="2_iyx0m"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ij1v8"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_errlg"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iyx0m"]
+radius = 0.3
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bl13t"]
+size = Vector3(20, 0.5, 20)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_iyx0m"]
+size = Vector2(20, 20)
+
+[node name="Test" type="Node3D" unique_id=1574488025]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1139519365 node_paths=PackedStringArray("camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7522955, 3.615758, -0.8606329)
+script = ExtResource("1_errlg")
+camera = NodePath("SpringArmPivot/Camera3D")
+
+[node name="ElementMagic" type="Node3D" parent="CharacterBody3D" unique_id=1867507153]
+script = ExtResource("1_iyx0m")
+used_combination = Array[String](["eau", "eau"])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1050394130]
+shape = SubResource("CapsuleShape3D_ij1v8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=1707395890]
+mesh = SubResource("CapsuleMesh_errlg")
+
+[node name="SpringArmPivot" type="Node3D" parent="CharacterBody3D" unique_id=634117616]
+script = ExtResource("2_iyx0m")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CharacterBody3D/SpringArmPivot" unique_id=1143539244]
+shape = SubResource("SphereShape3D_iyx0m")
+spring_length = 4.0
+
+[node name="SpringPosition" type="Node3D" parent="CharacterBody3D/SpringArmPivot/SpringArm3D" unique_id=1005576262]
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/SpringArmPivot" unique_id=1783222765 node_paths=PackedStringArray("spring_arm")]
+script = ExtResource("2_bl13t")
+spring_arm = NodePath("../SpringArm3D/SpringPosition")
+lerp_power = 6.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1424900669]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1077888595]
+shape = SubResource("BoxShape3D_bl13t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=766435355]
+transform = Transform3D(1, 0, 0, 0, 0.99997324, -0.0073128645, 0, 0.0073128645, 0.99997324, 0, 0, 0)
+mesh = SubResource("PlaneMesh_iyx0m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=37153076]
+transform = Transform3D(1, 0, 0, 0, 0.9335929, 0.35833538, 0, -0.35833538, 0.9335929, 6.224863, 1.1930003, 4.9037876)
