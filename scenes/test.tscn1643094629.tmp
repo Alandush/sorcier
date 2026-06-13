@@ -69,10 +69,11 @@ transform = Transform3D(1, 0, 0, 0, 0.9335929, 0.35833538, 0, -0.35833538, 0.933
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=118422964]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5194435, 2.5283997)
-script = ExtResource("5_j5jx5")
-combination = Array[String](["terre", "feu"])
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1938047949]
+[node name="Area3D" type="Area3D" parent="StaticBody3D" unique_id=1190952222]
+script = ExtResource("5_j5jx5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D" unique_id=25605265]
 shape = SubResource("BoxShape3D_74lek")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=60477450]

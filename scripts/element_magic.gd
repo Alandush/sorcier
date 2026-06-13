@@ -2,10 +2,7 @@ extends Node3D
 
 @export var used_combination: Array[String]
 var elements: Array[String] = ['eau','terre','feu','air']
-
-func _ready() -> void:
-	print("ce script tourne")
-
+	
 func _input(_event):
 	if Input.is_action_just_pressed("lancer_sort"):
 		print('Ja lance le sort.')
