@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://c1p543i15da" path="res://scripts/camera_follow_player.gd" id="2_bl13t"]
 [ext_resource type="Script" uid="uid://c3h02qgxsyg0l" path="res://scripts/camera_spring_arm.gd" id="2_iyx0m"]
 [ext_resource type="Script" uid="uid://mgoyxh25p873" path="res://scripts/get_spell.gd" id="5_j5jx5"]
+[ext_resource type="Script" uid="uid://dawcm0oyxx6m4" path="res://scripts/take_infusion.gd" id="6_lpvoh"]
+[ext_resource type="Script" uid="uid://by2mlouobqgj6" path="res://scripts/ui.gd" id="7_at5dv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ij1v8"]
 
@@ -21,7 +23,22 @@ size = Vector2(20, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_74lek"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lpvoh"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_j5jx5"]
+material = SubResource("StandardMaterial3D_lpvoh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_at5dv"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jcd4p"]
+albedo_color = Color(1, 0.7411765, 0.3254902, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uacia"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yk7ts"]
+albedo_color = Color(0.42352942, 0.8039216, 0.4627451, 1)
 
 [node name="Test" type="Node3D" unique_id=1574488025]
 
@@ -68,7 +85,7 @@ mesh = SubResource("PlaneMesh_iyx0m")
 transform = Transform3D(1, 0, 0, 0, 0.9335929, 0.35833538, 0, -0.35833538, 0.9335929, 6.224863, 1.1930003, 4.9037876)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=118422964]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5194435, 2.5283997)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.648323, 0.5194435, 2.5283997)
 script = ExtResource("5_j5jx5")
 combination = Array[String](["terre", "feu"])
 
@@ -77,3 +94,106 @@ shape = SubResource("BoxShape3D_74lek")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=60477450]
 mesh = SubResource("BoxMesh_j5jx5")
+
+[node name="Eau" type="StaticBody3D" parent="." unique_id=1654644918]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3111396, 0.5194435, 2.5283997)
+script = ExtResource("6_lpvoh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Eau" unique_id=245492321]
+shape = SubResource("BoxShape3D_74lek")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Eau" unique_id=1064578440]
+mesh = SubResource("BoxMesh_j5jx5")
+surface_material_override/0 = SubResource("StandardMaterial3D_at5dv")
+
+[node name="Terre" type="StaticBody3D" parent="." unique_id=971641365]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75186014, 0.5194435, 2.5283997)
+script = ExtResource("6_lpvoh")
+id = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terre" unique_id=1150393677]
+shape = SubResource("BoxShape3D_74lek")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Terre" unique_id=1946955913]
+mesh = SubResource("BoxMesh_j5jx5")
+surface_material_override/0 = SubResource("StandardMaterial3D_jcd4p")
+
+[node name="Feu" type="StaticBody3D" parent="." unique_id=1634075713]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8437698, 0.5194435, 2.5283997)
+script = ExtResource("6_lpvoh")
+id = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Feu" unique_id=746740558]
+shape = SubResource("BoxShape3D_74lek")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Feu" unique_id=1100365721]
+mesh = SubResource("BoxMesh_j5jx5")
+surface_material_override/0 = SubResource("StandardMaterial3D_uacia")
+
+[node name="Air" type="StaticBody3D" parent="." unique_id=1846948702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.384281, 0.5194435, 2.5283997)
+script = ExtResource("6_lpvoh")
+id = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Air" unique_id=580897141]
+shape = SubResource("BoxShape3D_74lek")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Air" unique_id=842704601]
+mesh = SubResource("BoxMesh_j5jx5")
+surface_material_override/0 = SubResource("StandardMaterial3D_yk7ts")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=84155277]
+script = ExtResource("7_at5dv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI" unique_id=206449728]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -93.0
+offset_right = 20.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="Eau" type="PanelContainer" parent="UI/HBoxContainer" unique_id=1594959309]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/HBoxContainer/Eau" unique_id=1264765697]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 1, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Terre" type="PanelContainer" parent="UI/HBoxContainer" unique_id=1605244772]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/HBoxContainer/Terre" unique_id=1342090601]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.49803922, 0.6, 0, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Feu" type="PanelContainer" parent="UI/HBoxContainer" unique_id=1051462174]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/HBoxContainer/Feu" unique_id=1294048016]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Air" type="PanelContainer" parent="UI/HBoxContainer" unique_id=1819573356]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/HBoxContainer/Air" unique_id=604984416]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
