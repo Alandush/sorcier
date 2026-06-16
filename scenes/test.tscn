@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cu620hmji6e44" path="res://scripts/create_spell_ui.gd" id="8_jcd4p"]
 [ext_resource type="Script" uid="uid://dw0lmk3vmhwmv" path="res://scripts/infusion_drag_and_drop.gd" id="8_uacia"]
 [ext_resource type="Script" uid="uid://ll0ij5bpslcw" path="res://scripts/create_spell.gd" id="10_yk7ts"]
+[ext_resource type="Script" uid="uid://bnd32ejaqov87" path="res://scripts/create_spell_button.gd" id="11_ajshl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ij1v8"]
 
@@ -216,37 +217,53 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BoxCreateSpell" type="HBoxContainer" parent="UI" unique_id=1586119503]
+[node name="BoxCreateSpell" type="VBoxContainer" parent="UI" unique_id=1532785769]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -82.0
+offset_top = -62.0
+offset_right = 82.0
+offset_bottom = 62.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
 script = ExtResource("8_jcd4p")
 
-[node name="1" type="PanelContainer" parent="UI/BoxCreateSpell" unique_id=1708975756]
+[node name="BoxSpell" type="HBoxContainer" parent="UI/BoxCreateSpell" unique_id=1586119503]
+layout_mode = 2
+alignment = 1
+
+[node name="1" type="PanelContainer" parent="UI/BoxCreateSpell/BoxSpell" unique_id=1708975756 node_paths=PackedStringArray("button_create_spell")]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 script = ExtResource("10_yk7ts")
+button_create_spell = NodePath("../../CreateSpell")
 
-[node name="Label" type="Label" parent="UI/BoxCreateSpell/1" unique_id=274154278]
+[node name="Label" type="Label" parent="UI/BoxCreateSpell/BoxSpell/1" unique_id=274154278]
 layout_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="2" type="PanelContainer" parent="UI/BoxCreateSpell" unique_id=481783747]
+[node name="2" type="PanelContainer" parent="UI/BoxCreateSpell/BoxSpell" unique_id=481783747 node_paths=PackedStringArray("button_create_spell")]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 script = ExtResource("10_yk7ts")
+button_create_spell = NodePath("../../CreateSpell")
 
-[node name="Label" type="Label" parent="UI/BoxCreateSpell/2" unique_id=1583826966]
+[node name="Label" type="Label" parent="UI/BoxCreateSpell/BoxSpell/2" unique_id=1583826966]
 layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreateSpell" type="PanelContainer" parent="UI/BoxCreateSpell" unique_id=1781478095]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+script = ExtResource("11_ajshl")
+
+[node name="Label" type="Label" parent="UI/BoxCreateSpell/CreateSpell" unique_id=1654563275]
+layout_mode = 2
+text = "Créer le sort"
 horizontal_alignment = 1
 vertical_alignment = 1

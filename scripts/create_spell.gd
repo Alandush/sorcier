@@ -2,6 +2,8 @@ extends PanelContainer
 
 @onready var label = $Label
 @onready var ui = get_node("/root/Test/UI")
+@export var button_create_spell: PanelContainer
+
 var id: int
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:

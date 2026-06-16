@@ -1,7 +1,12 @@
-extends HBoxContainer
+extends VBoxContainer
 
 @onready var infusion_ui = get_node("/root/Test/UI/BoxInfusion")
 var inventaire_ouvert := false
+
+@onready var box_spells = [
+	$"BoxSpell/1/Label",
+	$"BoxSpell/2/Label",
+]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
