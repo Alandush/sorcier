@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://weriqpe0mpuq" path="res://scripts/element_magic.gd" id="1_iyx0m"]
 [ext_resource type="Script" uid="uid://c1p543i15da" path="res://scripts/camera_follow_player.gd" id="2_bl13t"]
 [ext_resource type="Script" uid="uid://c3h02qgxsyg0l" path="res://scripts/camera_spring_arm.gd" id="2_iyx0m"]
+[ext_resource type="PackedScene" uid="uid://qe2vx8fgsqju" path="res://scenes/vent.tscn" id="3_ghpyy"]
 [ext_resource type="Script" uid="uid://mgoyxh25p873" path="res://scripts/get_spell.gd" id="5_j5jx5"]
 [ext_resource type="Script" uid="uid://dawcm0oyxx6m4" path="res://scripts/take_infusion.gd" id="6_lpvoh"]
 [ext_resource type="Script" uid="uid://by2mlouobqgj6" path="res://scripts/ui.gd" id="7_at5dv"]
@@ -14,7 +15,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ij1v8"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_errlg"]
+[sub_resource type="PrismMesh" id="PrismMesh_ghpyy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_iyx0m"]
 radius = 0.3
@@ -53,13 +54,14 @@ camera = NodePath("SpringArmPivot/Camera3D")
 
 [node name="ElementMagic" type="Node3D" parent="Player" unique_id=1867507153]
 script = ExtResource("1_iyx0m")
-used_combination = Array[String](["eau", "eau"])
+used_combination = Array[String](["air", "air"])
+vent_scene = ExtResource("3_ghpyy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1050394130]
 shape = SubResource("CapsuleShape3D_ij1v8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=1707395890]
-mesh = SubResource("CapsuleMesh_errlg")
+mesh = SubResource("PrismMesh_ghpyy")
 
 [node name="SpringArmPivot" type="Node3D" parent="Player" unique_id=634117616]
 script = ExtResource("2_iyx0m")
@@ -88,15 +90,17 @@ mesh = SubResource("PlaneMesh_iyx0m")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=37153076]
 transform = Transform3D(1, 0, 0, 0, 0.9335929, 0.35833538, 0, -0.35833538, 0.9335929, 6.224863, 1.1930003, 4.9037876)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=118422964]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.648323, 0.5194435, 2.5283997)
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=559033597]
+mass = 10.0
 script = ExtResource("5_j5jx5")
-combination = Array[String](["terre", "feu"])
+combination = Array[String](["air", "air"])
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1938047949]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1938047949]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.648323, 0.5194435, 2.5283997)
 shape = SubResource("BoxShape3D_74lek")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=60477450]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=60477450]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.648323, 0.5194435, 2.5283997)
 mesh = SubResource("BoxMesh_j5jx5")
 
 [node name="Eau" type="StaticBody3D" parent="." unique_id=1654644918]
@@ -172,7 +176,7 @@ element = "eau"
 [node name="Label" type="Label" parent="UI/BoxInfusion/Eau" unique_id=1264765697]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 1, 1, 1)
-text = "1"
+text = "99"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -186,7 +190,7 @@ id = 1
 [node name="Label" type="Label" parent="UI/BoxInfusion/Terre" unique_id=1342090601]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.49803922, 0.6, 0, 1)
-text = "1"
+text = "99"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -200,7 +204,7 @@ id = 2
 [node name="Label" type="Label" parent="UI/BoxInfusion/Feu" unique_id=1294048016]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
-text = "1"
+text = "99"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -213,7 +217,7 @@ id = 3
 
 [node name="Label" type="Label" parent="UI/BoxInfusion/Air" unique_id=604984416]
 layout_mode = 2
-text = "1"
+text = "99"
 horizontal_alignment = 1
 vertical_alignment = 1
 

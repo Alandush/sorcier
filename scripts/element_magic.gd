@@ -2,6 +2,7 @@ extends Node3D
 
 @export var used_combination: Array[String]
 var elements: Array[String] = ['eau','terre','feu','air']
+@export var vent_scene: PackedScene
 	
 func _input(_event):
 	if Input.is_action_just_pressed("lancer_sort"):
@@ -43,6 +44,13 @@ func _input(_event):
 			elif used_combination == [elements[3], elements[2]]: # AIR ; FEU
 				print('Fumée')
 			elif used_combination == [elements[3], elements[3]]: # AIR ; AIR
+				# on l'ajoute à la scène
+				var vent = vent_scene.instantiate()
+				get_parent().add_child(vent)
+				var cam = get_viewport().get_camera_3d()    # la caméra active
+				var direction = -cam.global_transform.basis.z    # l'avant de la caméra
+				vent.global_position = global_position + direction * 3.5
+				vent.global_transform.basis = cam.global_transform.basis
 				print('Bourasque')
 		else:
 			print('Il n\'y a pas deux éléments.')

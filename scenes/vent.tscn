@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://qe2vx8fgsqju"]
+
+[ext_resource type="Script" uid="uid://bwk2fa0wwy6hl" path="res://scripts/wind.gd" id="1_cp5ku"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qcowo"]
+size = Vector3(1, 1, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qcowo"]
+size = Vector3(1, 1, 5)
+
+[node name="Vent" type="Node3D" unique_id=6613863]
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=475241106]
+script = ExtResource("1_cp5ku")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=401490751]
+shape = SubResource("BoxShape3D_qcowo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hitbox" unique_id=2035647966]
+mesh = SubResource("BoxMesh_qcowo")
