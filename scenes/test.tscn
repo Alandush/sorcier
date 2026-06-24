@@ -91,7 +91,7 @@ mesh = SubResource("PlaneMesh_iyx0m")
 transform = Transform3D(1, 0, 0, 0, 0.9335929, 0.35833538, 0, -0.35833538, 0.9335929, 6.224863, 1.1930003, 4.9037876)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=559033597]
-mass = 10.0
+mass = 50.0
 script = ExtResource("5_j5jx5")
 combination = Array[String](["air", "air"])
 

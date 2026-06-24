@@ -49,7 +49,7 @@ func _input(_event):
 				get_parent().add_child(vent)
 				var cam = get_viewport().get_camera_3d()    # la caméra active
 				var direction = -cam.global_transform.basis.z    # l'avant de la caméra
-				vent.global_position = global_position + direction * 3.5
+				vent.global_position = global_position + direction * 4
 				vent.global_transform.basis = cam.global_transform.basis
 				print('Bourasque')
 		else:
